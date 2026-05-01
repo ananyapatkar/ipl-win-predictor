@@ -13,137 +13,117 @@ st.set_page_config(
 # ── CSS ─────────────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-    --bg:     #04090F;
-    --bg2:    #08111E;
-    --card:   #0B1929;
-    --card2:  #0F2035;
-    --gold:   #F5C400;
-    --orange: #FF5722;
-    --cyan:   #00BCD4;
-    --green:  #00E676;
-    --red:    #FF1744;
-    --muted:  #4A6080;
-    --text:   #D6E4F0;
-    --border: rgba(245,196,0,0.12);
+    --bg: #0E1117;
+    --card: #161B22;
+    --card2: #1C2128;
+    --accent: #4C9AFF;
+    --text: #E6EDF3;
+    --muted: #8B949E;
+    --border: #2D333B;
 }
 
-html, body, .stApp { background: var(--bg) !important; }
+html, body, .stApp {
+    background: var(--bg) !important;
+    font-family: 'Inter', sans-serif !important;
+}
 
+/* Sidebar */
 [data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #060E1A 0%, #08111E 100%) !important;
-    border-right: 1px solid var(--border) !important;
+    background: #0B0F14 !important;
+    border-right: 1px solid var(--border);
 }
-[data-testid="stSidebar"] * { color: var(--text) !important; }
+[data-testid="stSidebar"] * {
+    color: var(--text) !important;
+}
 
+/* Inputs */
 .stSelectbox > div > div,
 .stNumberInput > div > div > input {
     background: var(--card2) !important;
     border: 1px solid var(--border) !important;
-    border-radius: 8px !important;
+    border-radius: 6px !important;
     color: var(--text) !important;
-    font-family: 'Rajdhani', sans-serif !important;
-}
-.stSelectbox > div > div:focus-within {
-    border-color: rgba(245,196,0,0.5) !important;
-    box-shadow: 0 0 0 2px rgba(245,196,0,0.08) !important;
 }
 
-label, .stSelectbox label, .stNumberInput label {
-    font-family: 'Rajdhani', sans-serif !important;
-    font-size: 0.72rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 2px !important;
-    text-transform: uppercase !important;
+/* Labels */
+label {
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
     color: var(--muted) !important;
 }
 
+/* Buttons */
 .stButton > button {
-    background: linear-gradient(135deg, #F5C400, #FF5722) !important;
-    color: #04090F !important;
+    background: var(--accent) !important;
+    color: white !important;
+    border-radius: 6px !important;
     border: none !important;
-    border-radius: 8px !important;
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: 0.78rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 1.5px !important;
-    padding: 0.55rem 1.8rem !important;
-    box-shadow: 0 4px 18px rgba(255,87,34,0.28) !important;
-    transition: all 0.25s ease !important;
+    padding: 0.5rem 1.2rem !important;
+    font-weight: 500 !important;
 }
 .stButton > button:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 28px rgba(255,87,34,0.45) !important;
+    background: #3B82F6 !important;
 }
 
+/* Metrics */
+[data-testid="stMetric"] {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+}
 [data-testid="stMetricLabel"] {
-    font-family: 'Rajdhani', sans-serif !important;
-    font-size: 0.7rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 2px !important;
-    text-transform: uppercase !important;
-    color: var(--muted) !important;
+    color: var(--muted);
+    font-size: 0.7rem;
 }
 [data-testid="stMetricValue"] {
-    font-family: 'Orbitron', sans-serif !important;
-    font-size: 1.7rem !important;
-    font-weight: 700 !important;
-    color: var(--gold) !important;
-}
-[data-testid="stMetric"] {
-    background: var(--card) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 12px !important;
-    padding: 1rem 1.25rem !important;
-    position: relative !important;
-    overflow: hidden !important;
-}
-[data-testid="stMetric"]::before {
-    content:''; position:absolute; left:0; top:0; bottom:0;
-    width:3px;
-    background: linear-gradient(180deg, var(--gold), var(--orange));
+    color: var(--text);
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
-.stDataFrame { border-radius: 12px !important; overflow: hidden !important; }
+/* Tables */
+.stDataFrame {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
 .stDataFrame th {
-    font-family: 'Rajdhani', sans-serif !important;
-    font-size: 0.7rem !important;
-    letter-spacing: 2px !important;
-    text-transform: uppercase !important;
+    background: var(--card2);
+    color: var(--muted);
 }
 .stDataFrame td {
-    font-family: 'Rajdhani', sans-serif !important;
-    font-size: 0.9rem !important;
+    color: var(--text);
 }
 
-.stMarkdown p { font-family: 'Rajdhani', sans-serif !important; color: var(--text) !important; }
-
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: rgba(245,196,0,0.25); border-radius: 2px; }
-
-#MainMenu, footer, header { visibility: hidden !important; }
+/* Remove flashy stuff */
+#MainMenu, footer, header {
+    visibility: hidden;
+}
 </style>
 """, unsafe_allow_html=True)
-
 
 # ── UI helpers ───────────────────────────────────────────────────────────────────
 def page_header(icon, title, subtitle):
     st.markdown(f"""
-    <div style="background:linear-gradient(135deg,rgba(245,196,0,0.07),rgba(0,188,212,0.04));
-                border:1px solid rgba(245,196,0,0.14);border-radius:14px;
-                padding:1.4rem 1.8rem;margin-bottom:1.4rem;position:relative;overflow:hidden;">
-        <div style="position:absolute;top:-40px;right:-30px;width:200px;height:200px;
-             background:radial-gradient(circle,rgba(245,196,0,0.06),transparent 70%);
-             pointer-events:none;"></div>
-        <h1 style="font-family:'Orbitron',sans-serif;font-size:1.55rem;font-weight:900;
-                   background:linear-gradient(135deg,#F5C400,#FF5722);
-                   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-                   margin:0 0 0.25rem 0;letter-spacing:1px;">{icon} {title}</h1>
-        <p style="font-family:'Rajdhani',sans-serif;color:#4A6080;font-size:0.82rem;
-                  letter-spacing:2px;text-transform:uppercase;margin:0;">{subtitle}</p>
+    <div style="background:#161B22;
+                border:1px solid #2D333B;
+                border-radius:10px;
+                padding:1.2rem 1.5rem;
+                margin-bottom:1.2rem;">
+        <h1 style="font-size:1.4rem;
+                   font-weight:600;
+                   color:#E6EDF3;
+                   margin:0;">
+            {icon} {title}
+        </h1>
+        <p style="color:#8B949E;
+                  font-size:0.8rem;
+                  margin:0.2rem 0 0;">
+            {subtitle}
+        </p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -167,10 +147,6 @@ def info_row(label, value):
     </div>
     """, unsafe_allow_html=True)
 
-
-# ════════════════════════════════════════════════════════════════════════════════
-# ORIGINAL LOGIC — completely untouched
-# ════════════════════════════════════════════════════════════════════════════════
 
 # Load model and columns
 model = pickle.load(open('model.pkl', 'rb'))
